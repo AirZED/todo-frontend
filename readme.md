@@ -1,0 +1,1 @@
+This is the frontend of a todo app I am building to sync with my backend for learning purposes
