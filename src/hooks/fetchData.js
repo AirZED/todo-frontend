@@ -6,9 +6,6 @@ const useFetch = (url, method = "GET") => {
   const [error, setError] = useState(null);
   const [options, setOptions] = useState(null);
 
-
-  console.log(url)
-
   const postData = (postData) => {
     setOptions({
       method: method,
@@ -18,6 +15,7 @@ const useFetch = (url, method = "GET") => {
       body: JSON.stringify(postData),
     });
   };
+
   useEffect(() => {
     const controller = new AbortController();
     const fetchData = async (fetchOptions) => {
@@ -28,7 +26,6 @@ const useFetch = (url, method = "GET") => {
           signal: controller.signal,
         });
         if (!res.ok) {
-          console.log(res);
           throw new Error(res.statusText);
         }
         const data = await res.json();
