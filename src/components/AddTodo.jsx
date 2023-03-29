@@ -9,18 +9,28 @@ import { GrClose } from "react-icons/gr";
 
 // Input field Reducer
 const inputReducer = (state, action) => {
-  if (action.type === "EDIT") {
-    return { value: action.val };
+  if (action.type === "EDIT-TODO") {
+    return {
+      value: { ...state.value, todo: action.payload },
+      blur: state.blur,
+    };
+  }
+
+  if (action.type === "EDIT-DESCRIPTION") {
+    return {
+      value: { ...state.value, description: action.payload },
+      blur: state.blur,
+    };
   }
   if (action.type === "BLUR") {
     return { value: state.value, blur: true };
   }
-  return { value: "", blur: false };
+  return { value: { todo: "", description: "" }, blur: false };
 };
 
 const AddTodo = (props) => {
   const [inputState, dispatchFn] = useReducer(inputReducer, {
-    value: "",
+    value: { todo: "", description: "" },
     blur: false,
   });
   const { data, isPending, error, postData } = useFetch(url, "POST");
@@ -48,9 +58,9 @@ const AddTodo = (props) => {
           className={inputClassName}
           type="text"
           onChange={(event) =>
-            dispatchFn({ type: "EDIT", val: event.target.value })
+            dispatchFn({ type: "EDIT-TODO", payload: event.target.value })
           }
-          value={inputState.value}
+          value={inputState.value.todo}
         />
       </div>
       <div>
@@ -60,9 +70,12 @@ const AddTodo = (props) => {
           type="text"
           id="description"
           onChange={(event) =>
-            dispatchFn({ type: "EDIT", val: event.target.value })
+            dispatchFn({
+              type: "EDIT-DESCRIPTION",
+              payload: event.target.value,
+            })
           }
-          value={inputState.value}
+          value={inputState.value.description}
         />
       </div>
       <button
