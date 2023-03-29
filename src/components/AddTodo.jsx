@@ -5,7 +5,7 @@ import { useReducer } from "react";
 import useFetch, { url } from "../hooks/fetchData";
 
 // importing from react-icons
-import { AiOutlineClose } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
 
 // Input field Reducer
 const inputReducer = (state, action) => {
@@ -33,10 +33,10 @@ const AddTodo = (props) => {
     "hover:bg-slate-200 hover:border-2 active:border-2 border-2 border-black focus:outline-none";
   return (
     <form
-      className="relative top-1 right-0 left-0 m-auto bg-white p-4 text-black [&>*]:flex [&>*]:flex-col [&>*]:my-3 [&>*>input]:p-2 [&>*>input]:bg-white"
+      className="relative bg-white right-0 left-0 m-auto p-4 text-black [&>*]:flex [&>*]:flex-col [&>*]:my-3 [&>*>input]:p-2 [&>*>input]:bg-white tablet:w-[50%] w-full"
       onSubmit={addTodoSubmitHandler}
     >
-      <AiOutlineClose
+      <GrClose
         className=" absolute top-4 right-4 text-xl cursor-pointer "
         onClick={props.onClose}
       />
