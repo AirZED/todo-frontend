@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+
+export const url = "http://localhost:8000/api/v1/todos";
+
+
 const useFetch = (url, method = "GET") => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
