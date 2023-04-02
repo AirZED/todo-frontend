@@ -1,21 +1,13 @@
-//importing fetch all todos
-import useFetchData from "../hooks/fetchData";
-
-// importing url
-import { url } from "../hooks/fetchData";
+// importing from react
+import { memo } from "react";
 
 const Todo = (props) => {
-  const { data, isPending, error } = useFetchData(url);
-
-  if (data) {
-    console.log(data);
-  }
   return (
-    <div className="bg-white color-black">
-      <h1>Sleeping for 8 hours</h1>
-      <p>This is because I want to really make my mum happy</p>
+    <div className="bg-white text-[black] border-1 border-x-yellow-800 rounded-md my-3 p-4 ">
+      <h1>{props.todo}</h1>
+      <p>{props.description}</p>
     </div>
   );
 };
 
-export default Todo;
+export default memo(Todo);

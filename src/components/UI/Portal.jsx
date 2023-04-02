@@ -12,7 +12,10 @@ const Portal = (props) => {
   return (
     <Fragment>
       {createPortal(<Backdrop onClose={props.onClose} />, portalEl)}
-      {createPortal(<AddTodo onClose={props.onClose} />, portalEl)}
+      {createPortal(
+        <AddTodo onClose={props.onClose}  />,
+        portalEl
+      )}
     </Fragment>
   );
 };
